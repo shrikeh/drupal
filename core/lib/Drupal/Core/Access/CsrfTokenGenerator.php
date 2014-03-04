@@ -13,6 +13,10 @@ use Drupal\Core\Session\AccountInterface;
 
 /**
  * Generates and validates CSRF tokens.
+ * The generated token is based on the session ID of the current user. Normally,
+ * anonymous users do not have a session, so the generated token will be
+ * different on every page request. To generate a token for users without a
+ * session, manually start a session prior to calling this function.
  *
  * @see \Drupal\Tests\Core\Access\CsrfTokenGeneratorTest
  */
@@ -54,13 +58,13 @@ class CsrfTokenGenerator implements TokenGeneratorInterface {
 
   /**
    * {@inheritdoc}
-   *
-   * @return string
-   *   A 43-character URL-safe token for validation, based on the user session
-   *   ID, the hash salt provided by drupal_get_hash_salt(), and the
-   *   'drupal_private_key' configuration variable.
    */
   public function get($value = '') {
+    /*
+     * A 43-character URL-safe token for validation, based on the user session
+     * ID, the hash salt provided by drupal_get_hash_salt(), and the
+     * 'drupal_private_key' configuration variable.
+     */
     return Crypt::hmacBase64($value, session_id() . $this->privateKey->get() . drupal_get_hash_salt());
   }
 
@@ -68,6 +72,7 @@ class CsrfTokenGenerator implements TokenGeneratorInterface {
    * {@inheritdoc}
    */
   public function validate($token, $value = '', $skip_anonymous = FALSE) {
+   // Validates a token based on $value, the user session, and the private key.
     return ($skip_anonymous && $this->currentUser->isAnonymous()) || ($token === $this->get($value));
   }
 }

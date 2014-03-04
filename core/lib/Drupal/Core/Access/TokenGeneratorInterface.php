@@ -6,16 +6,14 @@
 
 namespace Drupal\Core\Access;
 
-
+/**
+ * Generates and validates CSRF tokens.
+ *
+ */
 interface TokenGeneratorInterface {
 
     /**
-     * Generates a token based on $value, the user session, and the private key.
-     *
-     * The generated token is based on the session ID of the current user. Normally,
-     * anonymous users do not have a session, so the generated token will be
-     * different on every page request. To generate a token for users without a
-     * session, manually start a session prior to calling this function.
+     * Generates a token based on $value.
      *
      * @param string $value
      *   (optional) An additional value to base the token on.
