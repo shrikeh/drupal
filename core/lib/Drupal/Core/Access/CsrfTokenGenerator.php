@@ -16,7 +16,7 @@ use Drupal\Core\Session\AccountInterface;
  *
  * @see \Drupal\Tests\Core\Access\CsrfTokenGeneratorTest
  */
-class CsrfTokenGenerator {
+class CsrfTokenGenerator implements TokenGeneratorInterface {
 
   /**
    * The private key service.

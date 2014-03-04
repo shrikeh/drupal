@@ -11,7 +11,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\Url as UrlHelper;
-use Drupal\Core\Access\CsrfTokenGenerator;
+use Drupal\Core\Access\TokenGeneratorInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\HttpKernel;
 use Drupal\Core\KeyValueStore\KeyValueExpirableFactoryInterface;
@@ -136,7 +136,7 @@ class FormBuilder implements FormBuilderInterface {
    * @param \Drupal\Core\HttpKernel $http_kernel
    *   The HTTP kernel.
    */
-  public function __construct(ModuleHandlerInterface $module_handler, KeyValueExpirableFactoryInterface $key_value_expirable_factory, EventDispatcherInterface $event_dispatcher, UrlGeneratorInterface $url_generator, TranslationInterface $translation_manager, CsrfTokenGenerator $csrf_token = NULL, HttpKernel $http_kernel = NULL) {
+  public function __construct(ModuleHandlerInterface $module_handler, KeyValueExpirableFactoryInterface $key_value_expirable_factory, EventDispatcherInterface $event_dispatcher, UrlGeneratorInterface $url_generator, TranslationInterface $translation_manager, TokenGeneratorInterface $csrf_token = NULL, HttpKernel $http_kernel = NULL) {
     $this->moduleHandler = $module_handler;
     $this->keyValueExpirableFactory = $key_value_expirable_factory;
     $this->eventDispatcher = $event_dispatcher;
