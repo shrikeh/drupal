@@ -70,5 +70,4 @@ class CsrfTokenGenerator implements TokenGeneratorInterface {
   public function validate($token, $value = '', $skip_anonymous = FALSE) {
     return ($skip_anonymous && $this->currentUser->isAnonymous()) || ($token === $this->get($value));
   }
-
 }
