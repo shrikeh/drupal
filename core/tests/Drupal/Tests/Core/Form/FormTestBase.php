@@ -119,9 +119,7 @@ abstract class FormTestBase extends UnitTestCase {
     $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
     $this->urlGenerator = $this->getMock('Drupal\Core\Routing\UrlGeneratorInterface');
     $this->translationManager = $this->getStringTranslationStub();
-    $this->csrfToken = $this->getMockBuilder('Drupal\Core\Access\TokenGeneratorInterface')
-      ->disableOriginalConstructor()
-      ->getMock();
+    $this->csrfToken = $this->getMock('Drupal\Core\Access\TokenGeneratorInterface');
     $this->httpKernel = $this->getMockBuilder('Drupal\Core\HttpKernel')
       ->disableOriginalConstructor()
       ->getMock();
