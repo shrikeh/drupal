@@ -39,4 +39,4 @@ interface TokenGeneratorInterface {
      */
     public function validate($token, $value = '', $skip_anonymous = FALSE);
 
-} 
+}

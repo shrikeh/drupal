@@ -64,6 +64,9 @@ class CsrfTokenGenerator implements TokenGeneratorInterface {
      * A 43-character URL-safe token for validation, based on the user session
      * ID, the hash salt provided by drupal_get_hash_salt(), and the
      * 'drupal_private_key' configuration variable.
+     *
+     * @see drupal_get_hash_salt()
+     * @see drupal_session_start()
      */
     return Crypt::hmacBase64($value, session_id() . $this->privateKey->get() . drupal_get_hash_salt());
   }
