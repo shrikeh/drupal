@@ -25,7 +25,6 @@ interface TokenGeneratorInterface {
      */
     public function get($value = '');
 
-
     /**
      * Validates a token based on $value, the user session, and the private key.
      *
@@ -42,5 +41,4 @@ interface TokenGeneratorInterface {
      */
     public function validate($token, $value = '', $skip_anonymous = FALSE);
 
-    
 } 
